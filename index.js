@@ -10,7 +10,7 @@ function start() {
 	}
 
 	function askAndReturnPrefix(){
-		const prefixes = ['Quem e','O que e', 'A historia do']
+		const prefixes = ['Quem e','O que e', 'A historia de']
 		const selectedPrefixIndex = readline.keyInSelect(prefixes, 'Escolha uma opcao: ')
 		const selectedPrefixText = prefixes[selectedPrefixIndex]
 

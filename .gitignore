@@ -65,3 +65,5 @@ credentials/*.json
 
 #arquivos vscode
 .vscode
+
+content.json

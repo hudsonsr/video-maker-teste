@@ -13,8 +13,8 @@ async function robot() {
   //await fetchImagesOfAllSentences(content)
   //await downloadAllImages(content)
 
-  //await convertAllImages(content)
-  //await createAllSentenceImages(content)
+  await convertAllImages(content)
+ await createAllSentenceImages(content)
   await createYouTubeThumbnail()
 
   state.save(content)
@@ -129,7 +129,7 @@ async function robot() {
 
   async function createSentenceImage(sentenceIndex, sentenceText) {
     return new Promise((resolve, reject) => {
-      const outputFile = `./content/${sentenceIndex}-sentence.png`
+      const outputFile = `.\\content\\${sentenceIndex}-sentence.png`
 
       const templateSettings = {
         0: {

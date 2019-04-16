@@ -3,18 +3,17 @@ const imageDownloader = require('image-downloader')
 const google = require('googleapis').google
 const customSearch = google.customsearch('v1')
 const state = require('./state.js')
-const path = require('path')
 
 const googleSearchCredentials = require('../credentials/google-search.json')
 
 async function robot() {
   const content = state.load()
 
-  //await fetchImagesOfAllSentences(content)
-  //await downloadAllImages(content)
+  await fetchImagesOfAllSentences(content)
+  await downloadAllImages(content)
 
   await convertAllImages(content)
- await createAllSentenceImages(content)
+  await createAllSentenceImages(content)
   await createYouTubeThumbnail()
 
   state.save(content)
@@ -84,8 +83,8 @@ async function robot() {
 
   async function convertImage(sentenceIndex) {
     return new Promise((resolve, reject) => {
-      const inputFile = path.resolve(__dirname, '..', 'content', `${sentenceIndex}-original.png[0]`)
-      const outputFile = path.resolve(__dirname, '..', 'content', `${sentenceIndex}-converted.png`)
+      const inputFile = `.\\content\\${sentenceIndex}-original.png[0]`
+      const outputFile = `.\\content\\${sentenceIndex}-converted.png`
       const width = 1920
       const height = 1080
 
@@ -183,11 +182,9 @@ async function robot() {
 
   async function createYouTubeThumbnail() {
     return new Promise((resolve, reject) => {
-      const inputFile = path.resolve(__dirname, '..', 'content', '0-converted.png')
-      const outputFile = path.resolve(__dirname, '..', 'content', 'youtube-thumbnail.png')
-      gm()
-        .in(inputFile)
-        .write(outputFile, (error) => {
+     gm()
+     .in('.\\content\\0-converted.png')
+     .write('.\\content\\youtube-thumbnail.jpg', (error) => {
           if (error) {
             return reject(error)
           }
